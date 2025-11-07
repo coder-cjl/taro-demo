@@ -1,5 +1,4 @@
-// 判断是否为开发环境
-const isDev = process.env.NODE_ENV === 'development'
+import { isDev } from "./env"
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error'
 
