@@ -13,12 +13,12 @@ export default function HomePage() {
 
   return (
     <View>
-      <View>这是首页</View>
+      {/* <View>这是首页</View>
       <Button color="red" size="large" onClick={logic.fetchData}>
         跳转到详情页
-      </Button>
-      <LucaButton>自定义按钮2</LucaButton>
-      <LucaColumn alignItems="center">
+      </Button> */}
+      {/* <LucaButton>自定义按钮2</LucaButton> */}
+      <LucaColumn alignItems="center" gap="10px">
         <LucaButton onClick={logic.onShowLoading}>start loading</LucaButton>
         <LucaButton onClick={logic.onStopLoading}>stop loading</LucaButton>
         <LucaButton onClick={logic.onShowSuccess}>show success</LucaButton>
