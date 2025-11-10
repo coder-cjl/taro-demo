@@ -3,8 +3,11 @@ import LucaColumn from 'src/components/globals/column'
 import { getGlobalBottomFixedHeight } from 'src/components/views/constant'
 import LucaFixedBottom from 'src/components/views/fixed-bottom'
 import LucaFixedBottomButton from 'src/components/views/fixed-bottom-button'
+import useFixedPageLogic from './logic'
 
 export default function FixedPage() {
+  const logic = useFixedPageLogic()
+
   function topChildren() {
     return (
       <LucaColumn>
@@ -40,7 +43,9 @@ export default function FixedPage() {
     <LucaFixedBottom
       bottomHeight={getGlobalBottomFixedHeight()}
       topChildren={topChildren()}
-      bottomChildren={<LucaFixedBottomButton>底部固定按钮</LucaFixedBottomButton>}
+      bottomChildren={
+        <LucaFixedBottomButton onClick={logic.onBack}>底部固定按钮</LucaFixedBottomButton>
+      }
     />
   )
 }
