@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <View>
       <View>这是首页</View>
-      <Button color="red" size="large" onClick={logic.fetchData}>这是按钮</Button>
+      <Button color="red" size="large" onClick={logic.fetchData}>跳转到详情页</Button>
       <LucaButton>自定义按钮2</LucaButton>
       <LucaColumn  alignItems="left">
         <LucaColumn itemMargin="10px" style={{margin: "10px 0 0 0"}}>
