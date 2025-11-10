@@ -1,6 +1,6 @@
 import LucaButton from '../globals/button'
 import LucaContainer from '../globals/container'
-import { getGlobalBottomFixedHeight } from './constant'
+import { getGlobalBottomFixedHeight } from '../constant'
 
 interface LucaFixedBottomButtonProps {
   height?: number | string // 按钮容器高度 (可选,默认 116px)

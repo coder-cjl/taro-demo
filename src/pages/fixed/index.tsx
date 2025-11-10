@@ -1,6 +1,6 @@
 import { View } from '@tarojs/components'
 import LucaColumn from 'src/components/globals/column'
-import { getGlobalBottomFixedHeight } from 'src/components/views/constant'
+import { getGlobalBottomFixedHeight } from 'src/components/constant'
 import LucaFixedBottom from 'src/components/views/fixed-bottom'
 import LucaFixedBottomButton from 'src/components/views/fixed-bottom-button'
 import useFixedPageLogic from './logic'
@@ -10,7 +10,7 @@ export default function FixedPage() {
 
   function topChildren() {
     return (
-      <LucaColumn>
+      <LucaColumn style={{ paddingBottom: '20px' }}>
         <View style={{ padding: '10px', backgroundColor: '#f0f0f0' }}>这是顶部内容</View>
         <View style={{ padding: '10px', backgroundColor: '#f0f0f0' }}>这是顶部内容2</View>
         <View style={{ padding: '10px', backgroundColor: '#f0f0f0' }}>这是顶部内容3</View>
