@@ -1,22 +1,22 @@
 import Taro from '@tarojs/taro'
 import { create } from 'zustand'
 
-interface UseLogin {
+export interface UserLogin {
   id: number
   refreshToken: string
   accessToken: string
 }
 
-interface UserProfile {
+export interface UserProfile {
   id: number
   username: string
   email: string
   avatarUrl?: string
 }
 
-interface User {
+export interface User {
   profile: UserProfile
-  tokens: UseLogin
+  tokens: UserLogin
 }
 
 interface UserState {

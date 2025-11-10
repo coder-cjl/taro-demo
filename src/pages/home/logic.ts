@@ -6,6 +6,7 @@ import {
   stopLoading,
 } from 'src/components/luca-ui'
 import { useNavigateRouter } from 'src/routers/navigate'
+import { User, UserLogin, UserProfile, useUserStore } from 'src/stores/user'
 import logger from 'src/utils/log'
 
 export default function useHomeLogic() {
@@ -56,6 +57,29 @@ export default function useHomeLogic() {
     showToast('这是一个普通的 Toast')
   }
 
+  function onSetUserInfo() {
+    const profile: UserProfile = {
+      id: 1,
+      username: 'Luca User',
+      email: 'luca@example.com',
+      avatarUrl: 'https://example.com/avatar.jpg',
+    }
+
+    const login: UserLogin = {
+      id: 1,
+      accessToken: 'access-token-123',
+      refreshToken: 'refresh-token-456',
+    }
+
+    const user: User = {
+      profile,
+      tokens: login,
+    }
+
+    useUserStore.getState().setUser(user)
+    logger.info('用户信息已设置', user)
+  }
+
   return {
     fetchData,
     onShowLoading,
@@ -63,5 +87,6 @@ export default function useHomeLogic() {
     onShowSuccess,
     onShowError,
     onShowToast,
+    onSetUserInfo,
   }
 }

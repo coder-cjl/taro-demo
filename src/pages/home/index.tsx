@@ -24,6 +24,7 @@ export default function HomePage() {
         <LucaButton onClick={logic.onShowSuccess}>show success</LucaButton>
         <LucaButton onClick={logic.onShowError}>show error</LucaButton>
         <LucaButton onClick={logic.onShowToast}>show toast</LucaButton>
+        <LucaButton onClick={logic.onSetUserInfo}>Set user info</LucaButton>
         {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
           <View>列布局 子元素2</View>
