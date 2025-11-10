@@ -1,5 +1,5 @@
 import { View } from "@tarojs/components";
-import { CSSProperties } from "react";
+import { CSSProperties, useMemo } from "react";
 
 interface LucaContainerProps extends React.PropsWithChildren {
     padding?: string | number;  // 内边距，如 '16px', 16
@@ -16,22 +16,36 @@ interface LucaContainerProps extends React.PropsWithChildren {
 
 export default function LucaContainer(props: LucaContainerProps) {
 
-    // 构建样式对象
-    const containerStyle: CSSProperties = {
-        padding: typeof props.padding === 'number' ? `${props.padding}px` : props.padding,
-        margin: typeof props.margin === 'number' ? `${props.margin}px` : props.margin,
-        backgroundColor: props.backgroundColor,
-        borderRadius: typeof props.borderRadius === 'number' ? `${props.borderRadius}px` : props.borderRadius,
-        width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-        height: typeof props.height === 'number' ? `${props.height}px` : props.height,
-        border: props.border,
-        ...props.style
-    };
+    // 使用 useMemo 缓存样式对象，避免每次渲染都创建新对象
+    const containerStyle: CSSProperties = useMemo(() => {
+        const baseStyle: CSSProperties = {
+            padding: typeof props.padding === 'number' ? `${props.padding}px` : props.padding,
+            margin: typeof props.margin === 'number' ? `${props.margin}px` : props.margin,
+            backgroundColor: props.backgroundColor,
+            borderRadius: typeof props.borderRadius === 'number' ? `${props.borderRadius}px` : props.borderRadius,
+            width: typeof props.width === 'number' ? `${props.width}px` : props.width,
+            height: typeof props.height === 'number' ? `${props.height}px` : props.height,
+            border: props.border,
+            ...props.style
+        };
 
-    // 添加阴影
-    if (props.shadow) {
-        containerStyle.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
-    }
+        // 添加阴影
+        if (props.shadow) {
+            baseStyle.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+        }
+
+        return baseStyle;
+    }, [
+        props.padding,
+        props.margin,
+        props.backgroundColor,
+        props.borderRadius,
+        props.width,
+        props.height,
+        props.shadow,
+        props.border,
+        props.style
+    ]);
 
     return (
         <View style={containerStyle} onClick={props.onClick}>
