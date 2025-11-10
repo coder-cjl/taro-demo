@@ -18,8 +18,13 @@ export default function HomePage() {
         跳转到详情页
       </Button>
       <LucaButton>自定义按钮2</LucaButton>
-      <LucaColumn alignItems="left">
-        <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
+      <LucaColumn alignItems="center">
+        <LucaButton onClick={logic.onShowLoading}>start loading</LucaButton>
+        <LucaButton onClick={logic.onStopLoading}>stop loading</LucaButton>
+        <LucaButton onClick={logic.onShowSuccess}>show success</LucaButton>
+        <LucaButton onClick={logic.onShowError}>show error</LucaButton>
+        <LucaButton onClick={logic.onShowToast}>show toast</LucaButton>
+        {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
           <View>列布局 子元素2</View>
           <View>列布局 子元素3</View>
@@ -47,10 +52,10 @@ export default function HomePage() {
           style={{ width: '300px', height: '200px', backgroundColor: 'red' }}
           placeholder="1232132131232"
         ></Input> */}
-        <LucaTextArea
+        {/* <LucaTextArea
           style={{ backgroundColor: '#f6f6f6', padding: '12px 16px' }}
           placeholder="这是一段输入"
-        ></LucaTextArea>
+        ></LucaTextArea> */}
       </LucaColumn>
     </View>
   )
