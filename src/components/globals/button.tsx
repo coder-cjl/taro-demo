@@ -5,7 +5,7 @@ interface LucaButtonProps extends Partial<ButtonProps> {}
 
 export default function LucaButton(props: LucaButtonProps) {
   return (
-    <Button color="orange" {...props}>
+    <Button {...props}>
       {props.children} 
     </Button>
   )
