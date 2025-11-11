@@ -109,7 +109,6 @@ export default function useHomeLogic() {
         const resp = await Taro.login()
         if (resp.code) {
           logger.debug('微信登录成功，获取到 code:', resp.code)
-          logger.debug(resp)
           showSuccess('微信登录成功')
         } else {
           logger.error('微信登录失败，错误信息:', resp.errMsg)
