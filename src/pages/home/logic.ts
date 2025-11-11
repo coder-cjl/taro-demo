@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   showError,
   showSuccess,
@@ -11,6 +12,10 @@ import logger from 'src/utils/log'
 
 export default function useHomeLogic() {
   const navigate = useNavigateRouter()
+
+  const [visibleBottom, setVisibleBottom] = useState(false)
+  const [visibleCenter, setVisibleCenter] = useState(false)
+  const [visibleTop, setVisibleTop] = useState(false)
 
   function fetchData() {
     // logger.debug('fetchData 函数被调用')
@@ -57,6 +62,18 @@ export default function useHomeLogic() {
     showToast('这是一个普通的 Toast')
   }
 
+  function onSetBottomVisible(visible: boolean) {
+    setVisibleBottom(visible)
+  }
+
+  function onSetCenterVisible(visible: boolean) {
+    setVisibleCenter(visible)
+  }
+
+  function onSetTopVisible(visible: boolean) {
+    setVisibleTop(visible)
+  }
+
   function onSetUserInfo() {
     const profile: UserProfile = {
       id: 1,
@@ -88,5 +105,11 @@ export default function useHomeLogic() {
     onShowError,
     onShowToast,
     onSetUserInfo,
+    visibleBottom,
+    visibleCenter,
+    visibleTop,
+    onSetBottomVisible,
+    onSetCenterVisible,
+    onSetTopVisible,
   }
 }
