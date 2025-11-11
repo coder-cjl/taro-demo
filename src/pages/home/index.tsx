@@ -34,7 +34,7 @@ export default function HomePage() {
       <LucaPopup
         position="bottom"
         visible={logic.visibleBottom}
-        onClose={() => logic.onSetBottomVisible(false)}
+        onOverlayClick={() => logic.onSetBottomVisible(false)}
       >
         {bottomChildren()}
       </LucaPopup>
@@ -82,6 +82,7 @@ export default function HomePage() {
         <LucaButton onClick={() => logic.onSetBottomVisible(true)}>Toggle Bottom Popup</LucaButton>
         <LucaButton onClick={() => logic.onSetCenterVisible(true)}>Toggle Center Popup</LucaButton>
         <LucaButton onClick={() => logic.onSetTopVisible(true)}>Toggle Top Popup</LucaButton>
+        <LucaButton onClick={() => logic.onWechatLogin()}>We Chat Login</LucaButton>
         {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
           <View>列布局 子元素2</View>

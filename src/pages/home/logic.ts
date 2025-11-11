@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { useState } from 'react'
 import {
   showError,
@@ -97,6 +98,30 @@ export default function useHomeLogic() {
     logger.info('用户信息已设置', user)
   }
 
+  async function onWechatLogin() {
+    logger.debug('模拟微信登录流程开始')
+    await Taro.checkSession({
+      success: function () {
+        logger.debug('checkSession 成功回调, session 未过期')
+      },
+      fail: async function () {
+        logger.debug('checkSession 失败回调, 开始调用 Taro.login')
+        const resp = await Taro.login()
+        if (resp.code) {
+          logger.debug('微信登录成功，获取到 code:', resp.code)
+          logger.debug(resp)
+          showSuccess('微信登录成功')
+        } else {
+          logger.error('微信登录失败，错误信息:', resp.errMsg)
+          showError('微信登录失败')
+        }
+      },
+      complete: function (complete: unknown) {
+        logger.debug('checkSession 完成回调:', complete)
+      },
+    })
+  }
+
   return {
     fetchData,
     onShowLoading,
@@ -111,5 +136,6 @@ export default function useHomeLogic() {
     onSetBottomVisible,
     onSetCenterVisible,
     onSetTopVisible,
+    onWechatLogin,
   }
 }
