@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 
-export function startLoading(msg: string) {
-  Taro.showLoading({ title: msg, mask: true })
+export function startLoading(msg?: string) {
+  Taro.showLoading({ title: msg || '加载中...', mask: true })
 }
 
 export function stopLoading() {

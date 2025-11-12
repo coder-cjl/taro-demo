@@ -84,6 +84,14 @@ export default function HomePage() {
         <LucaButton onClick={() => logic.onSetCenterVisible(true)}>Toggle Center Popup</LucaButton>
         <LucaButton onClick={() => logic.onSetTopVisible(true)}>Toggle Top Popup</LucaButton>
         <LucaButton onClick={() => logic.onWechatLogin()}>We Chat Login</LucaButton>
+        <LucaContainer width={'100vw'}>
+          <LucaRow justifyContent={'space-between'}>
+            <LucaText>这是1</LucaText>
+            <LucaText color="blue">这是2</LucaText>
+            <LucaText weight={'lighter'}>这是3</LucaText>
+          </LucaRow>
+        </LucaContainer>
+
         {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
           <View>列布局 子元素2</View>
