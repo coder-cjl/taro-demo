@@ -112,6 +112,15 @@ class HttpClient {
       return Promise.reject(errorResult)
     }
 
+    if (!data || typeof data !== 'object') {
+      return Promise.reject({
+        isSuccess: false,
+        data: null,
+        message: '服务器返回数据格式错误',
+        code: -1,
+      })
+    }
+
     // 业务状态码检查
     const apiResponse = data as ApiResponse
     if (apiResponse.code !== undefined && apiResponse.code !== 200) {
@@ -202,7 +211,6 @@ class HttpClient {
         dataType: interceptedConfig.dataType,
         responseType: interceptedConfig.responseType,
       })
-
       // 执行响应后拦截
       return await this.afterResponse({ ...response, config: interceptedConfig }, interceptedConfig)
     } catch (error: any) {
