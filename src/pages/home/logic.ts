@@ -10,6 +10,8 @@ import {
 import { useNavigateRouter } from 'src/routers/navigate'
 import { User, UserLogin, UserProfile, useUserStore } from 'src/stores/user'
 import logger from 'src/utils/log'
+import { routeName as fixedRouteName } from 'src/pages/fixed/logic'
+import { doctorRouteName } from '../doctor/logic'
 
 export default function useHomeLogic() {
   const navigate = useNavigateRouter()
@@ -36,7 +38,8 @@ export default function useHomeLogic() {
     //     { id: 3, name: "Charlie", age: 35 },
     // ])
 
-    navigate.toName('/pages/fixed/index')
+    navigate.toName(fixedRouteName)
+    navigate.toName(doctorRouteName)
   }
 
   function onShowLoading() {

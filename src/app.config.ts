@@ -1,12 +1,9 @@
 export default defineAppConfig({
-  pages: [
-    'pages/home/index',
-    'pages/fixed/index',
-  ],
+  pages: ['pages/home/index', 'pages/fixed/index', 'pages/search/index', 'pages/doctor/index'],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
-  }
+    navigationBarTextStyle: 'black',
+  },
 })

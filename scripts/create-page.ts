@@ -63,6 +63,9 @@ const indexConfigContent = `export default definePageConfig({
 const logicContent = `import { useState } from 'react'
 import { useNavigateRouter } from 'src/routers/navigate'
 
+// 页面路由常量
+export const ${pageName}RouteName = '/pages/${pageName}/index'
+
 export default function use${PageName}Logic() {
   const router = useNavigateRouter()
 
@@ -116,13 +119,38 @@ try {
   //   fs.writeFileSync(path.join(pageDir, 'index.less'), indexLessContent)
   //   console.log(`✅ 创建 ${pageName}/index.less`)
 
+  // 自动添加路由到 app.config.ts
+  const appConfigPath = path.resolve(__dirname, '../src/app.config.ts')
+  if (fs.existsSync(appConfigPath)) {
+    let appConfig = fs.readFileSync(appConfigPath, 'utf-8')
+    const pageRoute = `pages/${pageName}/index`
+
+    // 检查路由是否已存在
+    if (!appConfig.includes(pageRoute)) {
+      // 查找 pages 数组的结束位置 ]
+      const pagesMatch = appConfig.match(/pages:\s*\[([\s\S]*?)\]/)
+      if (pagesMatch) {
+        const pagesContent = pagesMatch[1]
+        // 在数组末尾添加新路由
+        const newPagesContent = pagesContent.trim()
+          ? `${pagesContent.trimEnd()},\n    '${pageRoute}'`
+          : `\n    '${pageRoute}'\n  `
+
+        appConfig = appConfig.replace(/pages:\s*\[([\s\S]*?)\]/, `pages: [${newPagesContent}]`)
+
+        fs.writeFileSync(appConfigPath, appConfig)
+        console.log(`✅ 自动添加路由到 app.config.ts`)
+      } else {
+        console.log(`⚠️  未找到 pages 数组,请手动添加路由: 'pages/${pageName}/index'`)
+      }
+    } else {
+      console.log(`ℹ️  路由已存在于 app.config.ts`)
+    }
+  }
+
   console.log('\n✅ 页面创建成功!')
-  console.log(`\n📝 下一步: 在 app.config.ts 中添加页面路由:`)
-  console.log(`   pages: [`)
-  console.log(`     ...`)
-  console.log(`     'pages/${pageName}/index',`)
-  console.log(`   ]`)
   console.log(`\n📂 页面路径: src/pages/${pageName}/`)
+  console.log(`🔗 路由地址: pages/${pageName}/index`)
 } catch (error) {
   console.error('❌ 创建页面失败:', error)
   process.exit(1)
