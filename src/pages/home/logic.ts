@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   showError,
   showSuccess,
@@ -12,6 +12,7 @@ import { User, UserLogin, UserProfile, useUserStore } from 'src/stores/user'
 import logger from 'src/utils/log'
 import { routeName as fixedRouteName } from 'src/pages/fixed/logic'
 import { doctorRouteName } from '../doctor/logic'
+import { eventBus } from 'src/utils/bus'
 
 export default function useHomeLogic() {
   const navigate = useNavigateRouter()
@@ -19,6 +20,15 @@ export default function useHomeLogic() {
   const [visibleBottom, setVisibleBottom] = useState(false)
   const [visibleCenter, setVisibleCenter] = useState(false)
   const [visibleTop, setVisibleTop] = useState(false)
+
+  useEffect(() => {
+    eventBus.on('test-event', data => {
+      logger.info('收到 test-event 事件，数据为：', data)
+    })
+    return () => {
+      eventBus.off('test-event')
+    }
+  }, [])
 
   function fetchData() {
     // logger.debug('fetchData 函数被调用')
@@ -124,6 +134,11 @@ export default function useHomeLogic() {
     })
   }
 
+  function onToMine() {
+    logger.debug('跳转到 Doctor 页面')
+    navigate.toName(doctorRouteName)
+  }
+
   return {
     fetchData,
     onShowLoading,
@@ -139,5 +154,6 @@ export default function useHomeLogic() {
     onSetCenterVisible,
     onSetTopVisible,
     onWechatLogin,
+    onToMine,
   }
 }

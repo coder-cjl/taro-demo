@@ -73,6 +73,7 @@ export default function HomePage() {
       </Button> */}
       {/* <LucaButton>自定义按钮2</LucaButton> */}
       <LucaColumn alignItems="center" gap="10px">
+        <LucaButton onClick={logic.onToMine}>跳转到 Doctor</LucaButton>
         <LucaButton onClick={logic.onShowLoading}>start loading</LucaButton>
         <LucaButton onClick={logic.onStopLoading}>stop loading</LucaButton>
         <LucaButton onClick={logic.onShowSuccess}>show success</LucaButton>
