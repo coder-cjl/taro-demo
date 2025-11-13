@@ -1,6 +1,6 @@
 import LucaButton from '../globals/button'
 import LucaContainer from '../globals/container'
-import { getGlobalBottomFixedHeight } from '../constant'
+import { getGlobalBottomMarginTop, getGlobalButtonHeight } from '../constant'
 
 interface LucaFixedBottomButtonProps {
   height?: number | string // 按钮容器高度 (可选,默认 116px)
@@ -9,20 +9,26 @@ interface LucaFixedBottomButtonProps {
 }
 
 export default function LucaFixedBottomButton(props: LucaFixedBottomButtonProps) {
+  const buttonHeight = props.height || getGlobalButtonHeight()
+  const marginTop = getGlobalBottomMarginTop()
+  const totalHeight =
+    typeof buttonHeight === 'number'
+      ? buttonHeight + marginTop
+      : parseFloat(buttonHeight) + marginTop
+
   return (
     <LucaContainer
-      height={props.height || getGlobalBottomFixedHeight()}
+      height={totalHeight + 'px'}
       shadow={false}
-      padding={'20px 0px 0px 0px'}
       style={{
-        alignContent: 'center',
+        paddingTop: getGlobalBottomMarginTop() + 'px',
         display: 'flex',
         justifyContent: 'center',
       }}
     >
       <LucaButton
         type="primary"
-        style={{ width: 'calc(100% - 32px)', height: '50px' }}
+        style={{ width: 'calc(100% - 32px)', height: buttonHeight + 'px' }}
         onClick={props.onClick}
       >
         {props.children || '底部按钮'}

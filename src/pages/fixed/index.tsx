@@ -1,6 +1,6 @@
 import { View } from '@tarojs/components'
 import LucaColumn from 'src/components/globals/column'
-import { getGlobalBottomFixedHeight } from 'src/components/constant'
+import { getGlobalButtonHeight } from 'src/components/constant'
 import LucaFixedBottom from 'src/components/views/fixed-bottom'
 import LucaFixedBottomButton from 'src/components/views/fixed-bottom-button'
 import useFixedPageLogic from './logic'
@@ -41,7 +41,7 @@ export default function FixedPage() {
 
   return (
     <LucaFixedBottom
-      bottomHeight={getGlobalBottomFixedHeight()}
+      bottomHeight={getGlobalButtonHeight()}
       topChildren={topChildren()}
       bottomChildren={
         <LucaFixedBottomButton onClick={logic.onBack}>底部固定按钮</LucaFixedBottomButton>

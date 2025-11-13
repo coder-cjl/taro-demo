@@ -1,4 +1,11 @@
-/// 通用的底部固定高度
-export function getGlobalBottomFixedHeight() {
-  return '116px'
+export function getGlobalButtonHeight() {
+  return 50
+}
+
+export function getGlobalBottomMarginTop() {
+  return 20
+}
+
+export function getGlobalBottomMarginBottom() {
+  return 20
 }
