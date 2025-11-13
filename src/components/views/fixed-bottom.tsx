@@ -2,7 +2,6 @@ import { View, ScrollView } from '@tarojs/components'
 import { useMemo, useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { getGlobalBottomMarginBottom, getGlobalBottomMarginTop } from '../constant'
-import logger from 'src/utils/log'
 
 interface LucaFixedBottomProps {
   topChildren: React.ReactNode // 顶部可滚动内容

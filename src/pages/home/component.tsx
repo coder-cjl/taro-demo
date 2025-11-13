@@ -1,75 +1,78 @@
-import { LucaColumn, LucaContainer, LucaRow, LucaText } from 'src/components/luca-ui'
+import {
+  LucaColumn,
+  LucaContainer,
+  LucaRow,
+  LucaText,
+  LucaCard,
+  LucaList,
+  LucaSpace,
+} from 'src/components/luca-ui'
 
 function GaintPlanHeaderComponent() {
   return (
-    <LucaRow justifyContent="space-between" style={{ width: '100%' }}>
-      <LucaText size={'36rpx'}>术后-出院康复方案</LucaText>
-      <LucaRow>
-        <LucaText size={'32rpx'} color="#49869E">
+    <LucaRow justifyContent="space-between" width="100%">
+      <LucaText variant="h3">术后-出院康复方案</LucaText>
+      <LucaSpace size="small">
+        <LucaText variant="body" color="#49869E">
           调整方案
         </LucaText>
-        <LucaContainer width={'40rpx'} height={'40rpx'} backgroundColor="red"></LucaContainer>
-      </LucaRow>
+        <LucaContainer width={40} height={40} backgroundColor="red" />
+      </LucaSpace>
     </LucaRow>
   )
 }
 
 function GaintPlanItemComponent() {
   return (
-    <LucaColumn alignItems="stretch">
-      <LucaContainer
-        padding={'24rpx'}
-        margin={'0 0 28rpx 0'}
-        backgroundColor="#F6F6F6"
-        borderRadius={'32rpx'}
-      >
-        <LucaRow justifyContent="space-between">
-          <LucaRow>
-            <LucaContainer width={'40rpx'} height={'40rpx'} backgroundColor="red"></LucaContainer>
-            <LucaText size={'44rpx'} color="##1F1F1F" style={{ marginLeft: '28rpx' }}>
-              调整方案
-            </LucaText>
-          </LucaRow>
-          <LucaColumn justifyContent="center" alignItems="center">
-            <LucaText size={'24rpx'} color="#444444">
-              一级强度
-            </LucaText>
-            <LucaText size={'24rpx'} color="#444444">
-              每周2天，每天2组
-            </LucaText>
-          </LucaColumn>
-        </LucaRow>
-      </LucaContainer>
-    </LucaColumn>
+    <LucaCard backgroundColor="#F6F6F6" marginBottom={28} borderRadius={32}>
+      <LucaRow justifyContent="space-between">
+        <LucaSpace size="medium">
+          <LucaContainer width={40} height={40} backgroundColor="red" />
+          <LucaText variant="h2" color="#1F1F1F">
+            调整方案
+          </LucaText>
+        </LucaSpace>
+        <LucaColumn justifyContent="center" alignItems="center">
+          <LucaText variant="small" color="#444444">
+            一级强度
+          </LucaText>
+          <LucaText variant="small" color="#444444">
+            每周2天，每天2组
+          </LucaText>
+        </LucaColumn>
+      </LucaRow>
+    </LucaCard>
   )
 }
 
 function GaintPlanSectionComponent() {
+  // 模拟数据(实际使用时从 props 传入)
+  const items = [1, 2, 3] // 3个康复项目
+
   return (
     <LucaColumn justifyContent="start" alignItems="stretch">
-      <LucaText
-        size={'36rpx'}
-        weight={'normal'}
-        style={{ marginTop: '24rpx', marginBottom: '16rpx' }}
-      >
+      <LucaText variant="h3" weight="normal" marginTop={24} marginBottom={16}>
         膝关节
       </LucaText>
-      <GaintPlanItemComponent></GaintPlanItemComponent>
-      <GaintPlanItemComponent></GaintPlanItemComponent>
-      <GaintPlanItemComponent></GaintPlanItemComponent>
+      <LucaList
+        data={items}
+        renderItem={() => <GaintPlanItemComponent />}
+        gap="0rpx"
+        emptyText="暂无康复项目"
+      />
     </LucaColumn>
   )
 }
 
 function GaintPlanComponent() {
+  // 模拟数据(实际使用时从 props 或 state 获取)
+  const sections = [1, 2, 3, 4] // 4个关节部位
+
   return (
-    <LucaContainer fullWidth padding={'0rpx 48rpx 0rpx 48rpx'}>
+    <LucaContainer fullWidth paddingX={48}>
       <LucaColumn alignItems="stretch">
-        <GaintPlanHeaderComponent></GaintPlanHeaderComponent>
-        <GaintPlanSectionComponent></GaintPlanSectionComponent>
-        <GaintPlanSectionComponent></GaintPlanSectionComponent>
-        <GaintPlanSectionComponent></GaintPlanSectionComponent>
-        <GaintPlanSectionComponent></GaintPlanSectionComponent>
+        <GaintPlanHeaderComponent />
+        <LucaList data={sections} renderItem={() => <GaintPlanSectionComponent />} gap="0rpx" />
       </LucaColumn>
     </LucaContainer>
   )
@@ -77,52 +80,54 @@ function GaintPlanComponent() {
 
 function PingGuToolCellComponent() {
   return (
-    <LucaContainer
-      width={'312rpx'}
-      height={'180rpx'}
+    <LucaCard
+      width={312}
+      height={180}
+      borderRadius={32}
       backgroundColor="#FFF4F4"
-      borderRadius={'32rpx'}
-      padding={'28rpx'}
+      variant="filled"
+      padding={28}
     >
-      <LucaColumn justifyContent="space-between" alignItems="stretch">
-        <LucaText size={'32rpx'} color="#1F1F1F">
+      <LucaColumn justifyContent="space-between" alignItems="stretch" height="100%">
+        <LucaText variant="body" color="#1F1F1F">
           HSS评分
         </LucaText>
-        <LucaRow style={{ marginTop: '16rpx' }} alignItems="bottom">
-          <LucaText size={'48rpx'} weight={'bold'} color="#FF4444">
+        <LucaSpace size="small" align="end">
+          <LucaText variant="h1" color="#FF4444">
             差
           </LucaText>
-          <LucaText
-            size={'32rpx'}
-            color="#1F1F1F"
-            style={{ marginLeft: '12rpx', marginBottom: '8rpx' }}
-          >
+          <LucaText variant="body" color="#1F1F1F" marginBottom={8}>
             HSS评分
           </LucaText>
-        </LucaRow>
+        </LucaSpace>
       </LucaColumn>
-    </LucaContainer>
+    </LucaCard>
   )
 }
 
 function PingGuSectionComponent() {
+  const cellsRow1 = [1, 2] // 第一行 2 个卡片
+  const cellsRow2 = [1, 2] // 第二行 2 个卡片
+
   return (
-    <LucaColumn gap="30rpx" style={{ margin: '24rpx 0 0 0' }}>
-      <LucaRow gap="30rpx">
-        <PingGuToolCellComponent></PingGuToolCellComponent>
-        <PingGuToolCellComponent></PingGuToolCellComponent>
-      </LucaRow>
-      <LucaRow gap="30rpx">
-        <PingGuToolCellComponent></PingGuToolCellComponent>
-        <PingGuToolCellComponent></PingGuToolCellComponent>
-      </LucaRow>
+    <LucaColumn gap="30rpx" marginTop={24}>
+      <LucaSpace size={30} wrap>
+        {cellsRow1.map((_, index) => (
+          <PingGuToolCellComponent key={`row1-${index}`} />
+        ))}
+      </LucaSpace>
+      <LucaSpace size={30} wrap>
+        {cellsRow2.map((_, index) => (
+          <PingGuToolCellComponent key={`row2-${index}`} />
+        ))}
+      </LucaSpace>
     </LucaColumn>
   )
 }
 
 function PingGuToolComponent() {
   return (
-    <LucaContainer fullWidth padding={'0rpx 48rpx 0rpx 48rpx'} margin={'0 0 32rpx 0'}>
+    <LucaContainer fullWidth paddingX={48} marginBottom={32}>
       <LucaColumn alignItems="stretch">
         <GaintPlanHeaderComponent />
         <PingGuSectionComponent />

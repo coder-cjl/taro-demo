@@ -1,11 +1,11 @@
 import { View } from '@tarojs/components'
-import { CSSProperties } from 'react'
+import { useMemo } from 'react'
+import { BaseStyleProps, parseStyleProps } from './base-props'
 
-interface LucaColumnProps extends React.PropsWithChildren {
+interface LucaColumnProps extends BaseStyleProps, React.PropsWithChildren {
   alignItems?: 'left' | 'center' | 'right' | 'stretch'
   justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around'
   gap?: string // 子元素之间的间隔
-  style?: CSSProperties // 支持额外样式
 }
 
 // 对齐方式映射
@@ -25,18 +25,21 @@ const justifyContentMap = {
 } as const
 
 export default function LucaColumn(props: LucaColumnProps) {
-  return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: alignItemsMap[props.alignItems || 'stretch'], // 默认改为 stretch
-        justifyContent: justifyContentMap[props.justifyContent || 'start'],
-        gap: props.gap || '0',
-        ...props.style, // 允许覆盖或添加其他样式
-      }}
-    >
-      {props.children}
-    </View>
-  )
+  const columnStyle = useMemo(() => {
+    // 1. 基础样式(来自 BaseStyleProps)
+    const baseStyle = parseStyleProps(props)
+
+    // 2. Flex 布局样式
+    Object.assign(baseStyle, {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: alignItemsMap[props.alignItems || 'stretch'], // 默认 stretch
+      justifyContent: justifyContentMap[props.justifyContent || 'start'],
+      gap: props.gap || '0',
+    })
+
+    return baseStyle
+  }, [props, props.alignItems, props.justifyContent, props.gap])
+
+  return <View style={columnStyle}>{props.children}</View>
 }

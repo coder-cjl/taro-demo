@@ -1,11 +1,11 @@
 import { View } from '@tarojs/components'
-import { CSSProperties } from 'react'
+import { useMemo } from 'react'
+import { BaseStyleProps, parseStyleProps } from './base-props'
 
-interface LucaRowProps extends React.PropsWithChildren {
+interface LucaRowProps extends BaseStyleProps, React.PropsWithChildren {
   alignItems?: 'top' | 'center' | 'bottom' | 'stretch'
   justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around'
   gap?: string // 子元素之间的间隔
-  style?: CSSProperties // 支持额外样式
 }
 
 // 对齐方式映射
@@ -25,18 +25,21 @@ const justifyContentMap = {
 } as const
 
 export default function LucaRow(props: LucaRowProps) {
-  return (
-    <View
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: alignItemsMap[props.alignItems || 'center'], // 默认居中对齐比较合理
-        justifyContent: justifyContentMap[props.justifyContent || 'start'], // 默认改为 start
-        gap: props.gap || '0',
-        ...props.style, // 允许覆盖或添加其他样式
-      }}
-    >
-      {props.children}
-    </View>
-  )
+  const rowStyle = useMemo(() => {
+    // 1. 基础样式(来自 BaseStyleProps)
+    const baseStyle = parseStyleProps(props)
+
+    // 2. Flex 布局样式
+    Object.assign(baseStyle, {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: alignItemsMap[props.alignItems || 'center'], // 默认居中对齐
+      justifyContent: justifyContentMap[props.justifyContent || 'start'], // 默认左对齐
+      gap: props.gap || '0',
+    })
+
+    return baseStyle
+  }, [props, props.alignItems, props.justifyContent, props.gap])
+
+  return <View style={rowStyle}>{props.children}</View>
 }
