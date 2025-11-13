@@ -11,9 +11,9 @@ import {
 function GaintPlanHeaderComponent() {
   return (
     <LucaRow justifyContent="space-between" width="100%">
-      <LucaText variant="h3">术后-出院康复方案</LucaText>
+      <LucaText variant="h1">术后-出院康复方案</LucaText>
       <LucaSpace size="small">
-        <LucaText variant="body" color="#49869E">
+        <LucaText size={32} color="#49869E">
           调整方案
         </LucaText>
         <LucaContainer width={40} height={40} backgroundColor="red" />
@@ -28,15 +28,15 @@ function GaintPlanItemComponent() {
       <LucaRow justifyContent="space-between">
         <LucaSpace size="medium">
           <LucaContainer width={40} height={40} backgroundColor="red" />
-          <LucaText variant="h2" color="#1F1F1F">
+          <LucaText variant="h1" color="#1F1F1F">
             调整方案
           </LucaText>
         </LucaSpace>
         <LucaColumn justifyContent="center" alignItems="center">
-          <LucaText variant="small" color="#444444">
+          <LucaText variant="h2" color="#444444">
             一级强度
           </LucaText>
-          <LucaText variant="small" color="#444444">
+          <LucaText variant="h2" color="#444444">
             每周2天，每天2组
           </LucaText>
         </LucaColumn>
@@ -51,7 +51,7 @@ function GaintPlanSectionComponent() {
 
   return (
     <LucaColumn justifyContent="start" alignItems="stretch">
-      <LucaText variant="h3" weight="normal" marginTop={24} marginBottom={16}>
+      <LucaText variant="h1" weight="normal" marginTop={24} marginBottom={16}>
         膝关节
       </LucaText>
       <LucaList
@@ -89,14 +89,14 @@ function PingGuToolCellComponent() {
       padding={28}
     >
       <LucaColumn justifyContent="space-between" alignItems="stretch" height="100%">
-        <LucaText variant="body" color="#1F1F1F">
+        <LucaText size={32} color="#1F1F1F">
           HSS评分
         </LucaText>
         <LucaSpace size="small" align="end">
-          <LucaText variant="h1" color="#FF4444">
+          <LucaText size={48} color="#FF4444">
             差
           </LucaText>
-          <LucaText variant="body" color="#1F1F1F" marginBottom={8}>
+          <LucaText size={28} color="#1F1F1F" marginBottom={8}>
             HSS评分
           </LucaText>
         </LucaSpace>
