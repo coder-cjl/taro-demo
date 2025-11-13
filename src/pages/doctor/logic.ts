@@ -1,5 +1,3 @@
-import Taro from '@tarojs/taro'
-import { useState } from 'react'
 import { useNavigateRouter } from 'src/routers/navigate'
 import { eventBus } from 'src/utils/bus'
 
@@ -12,17 +10,6 @@ export default function useDoctorLogic() {
   function onEventBusClick() {
     eventBus.emit('test-event', { message: 'Hello from Doctor Page!' })
     router.back()
-
-    Taro.request({
-      url: 'https://jsonplaceholder.typicode.com/posts/1',
-      method: 'GET',
-    })
-      .then(response => {
-        console.log('Request successful:', response.data)
-      })
-      .catch(error => {
-        console.error('Request failed:', error)
-      })
   }
 
   return {
