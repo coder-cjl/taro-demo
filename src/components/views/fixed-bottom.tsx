@@ -48,7 +48,7 @@ export default function LucaFixedBottom(props: LucaFixedBottomProps) {
     const marginBottom = getGlobalBottomMarginBottom()
 
     return useSafeArea
-      ? baseHeight + safeAreaBottom + marginTop
+      ? baseHeight + safeAreaBottom + marginTop + marginBottom
       : baseHeight + marginTop + marginBottom
   }, [props.bottomHeight, safeAreaBottom, useSafeArea])
 
@@ -64,7 +64,7 @@ export default function LucaFixedBottom(props: LucaFixedBottomProps) {
       bottom: 0,
       left: 0,
       width: '100%',
-      height: `${actualBottomHeight}`,
+      height: `${actualBottomHeight}px`,
       backgroundColor: props.backgroundColor || '#fff',
       boxShadow: '0 -2px 8px rgba(0, 0, 0, 0.03)',
       zIndex: 100,
