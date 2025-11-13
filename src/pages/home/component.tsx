@@ -24,7 +24,7 @@ function GaintPlanHeaderComponent() {
 
 function GaintPlanItemComponent() {
   return (
-    <LucaCard backgroundColor="#F6F6F6" marginBottom={28} borderRadius={32}>
+    <LucaCard backgroundColor="#F6F6F6" marginBottom={28} padding={24} borderRadius={32}>
       <LucaRow justifyContent="space-between">
         <LucaSpace size="medium">
           <LucaContainer width={40} height={40} backgroundColor="red" />
