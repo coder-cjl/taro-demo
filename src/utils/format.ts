@@ -163,3 +163,11 @@ export function formatPercentage(value: number, decimalPlaces: number = 2): stri
   const percentage = (value * 100).toFixed(decimalPlaces)
   return `${percentage}%`
 }
+
+/**
+ * 数字补零
+ * @example padZero(5, 3) // '005'
+ */
+export function padZero(num: number, length: number = 2): string {
+  return num.toString().padStart(length, '0')
+}
