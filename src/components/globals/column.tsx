@@ -2,7 +2,7 @@ import { View } from '@tarojs/components'
 import { CSSProperties } from 'react'
 
 interface LucaColumnProps extends React.PropsWithChildren {
-  alignItems?: 'left' | 'center' | 'right'
+  alignItems?: 'left' | 'center' | 'right' | 'stretch'
   justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around'
   gap?: string // 子元素之间的间隔
   style?: CSSProperties // 支持额外样式
@@ -13,6 +13,7 @@ const alignItemsMap = {
   left: 'flex-start',
   center: 'center',
   right: 'flex-end',
+  stretch: 'stretch', // 拉伸子元素撑满宽度
 } as const
 
 const justifyContentMap = {
@@ -29,8 +30,8 @@ export default function LucaColumn(props: LucaColumnProps) {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: alignItemsMap[props.alignItems || 'center'],
-        justifyContent: justifyContentMap[props.justifyContent || 'center'],
+        alignItems: alignItemsMap[props.alignItems || 'stretch'], // 默认改为 stretch
+        justifyContent: justifyContentMap[props.justifyContent || 'start'],
         gap: props.gap || '0',
         ...props.style, // 允许覆盖或添加其他样式
       }}

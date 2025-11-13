@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import { getStorage, removeStorage, setStorage } from 'src/utils/storage'
 import { create } from 'zustand'
 
 export interface UserLogin {
@@ -30,21 +30,21 @@ interface UserState {
 const taroStorage = {
   getItem: (name: string) => {
     try {
-      return Taro.getStorageSync(name)
+      return getStorage<string>(name)
     } catch {
       return null
     }
   },
   setItem: (name: string, value: string) => {
     try {
-      Taro.setStorageSync(name, value)
+      setStorage<string>(name, value)
     } catch {
       console.error('Storage set failed')
     }
   },
   removeItem: (name: string) => {
     try {
-      Taro.removeStorageSync(name)
+      removeStorage(name)
     } catch {
       console.error('Storage remove failed')
     }

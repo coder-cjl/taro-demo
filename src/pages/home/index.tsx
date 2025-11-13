@@ -13,6 +13,7 @@ import {
   formatCardNumberWithSpaces,
   formatCreditCardNumber,
 } from 'src/utils/format'
+import { GaintPlanComponent, PingGuToolComponent } from './component'
 
 export default function HomePage() {
   const logic = useHomeLogic()
@@ -77,8 +78,10 @@ export default function HomePage() {
         跳转到详情页
       </Button> */}
       {/* <LucaButton>自定义按钮2</LucaButton> */}
-      <LucaColumn alignItems="center" gap="10px">
-        <LucaButton onClick={logic.onToMine}>跳转到 Doctor</LucaButton>
+      <LucaColumn alignItems="left" gap="10px">
+        <PingGuToolComponent />
+        <GaintPlanComponent />
+        {/* <LucaButton onClick={logic.onToMine}>跳转到 Doctor</LucaButton>
         <LucaButton onClick={logic.onShowLoading}>start loading</LucaButton>
         <LucaButton onClick={logic.onStopLoading}>stop loading</LucaButton>
         <LucaButton onClick={logic.onShowSuccess}>show success</LucaButton>
@@ -98,7 +101,7 @@ export default function HomePage() {
         </LucaContainer>
         <LucaText>{formatCardNumberWithSpaces('6222021234567890')}</LucaText>
         <LucaText>{formatCreditCardNumber('6222021234567890')}</LucaText>
-        <LucaText>{abbreviateString('6222021234567890', 1, 1)}</LucaText>
+        <LucaText>{abbreviateString('6222021234567890', 1, 1)}</LucaText> */}
 
         {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
