@@ -8,6 +8,11 @@ import LucaContainer from 'src/components/globals/container'
 import LucaRow from 'src/components/globals/row'
 import LucaTextArea from 'src/components/globals/textArea'
 import { LucaPopup } from 'src/components/luca-ui'
+import {
+  abbreviateString,
+  formatCardNumberWithSpaces,
+  formatCreditCardNumber,
+} from 'src/utils/format'
 
 export default function HomePage() {
   const logic = useHomeLogic()
@@ -91,6 +96,9 @@ export default function HomePage() {
             <LucaText weight={'lighter'}>这是3</LucaText>
           </LucaRow>
         </LucaContainer>
+        <LucaText>{formatCardNumberWithSpaces('6222021234567890')}</LucaText>
+        <LucaText>{formatCreditCardNumber('6222021234567890')}</LucaText>
+        <LucaText>{abbreviateString('6222021234567890', 1, 1)}</LucaText>
 
         {/* <LucaColumn itemMargin="10px" style={{ margin: '10px 0 0 0' }}>
           <View>列布局 子元素1</View>
