@@ -13,6 +13,7 @@ import logger from 'src/utils/log'
 import { routeName as fixedRouteName } from 'src/pages/fixed/logic'
 import { doctorRouteName } from '../doctor/logic'
 import { eventBus } from 'src/utils/bus'
+import { useShareMessage } from 'src/utils/share'
 
 export default function useHomeLogic() {
   const navigate = useNavigateRouter()
@@ -139,8 +140,9 @@ export default function useHomeLogic() {
   }
 
   function onToMine() {
-    logger.debug('跳转到 Doctor 页面')
+    // logger.debug('跳转到 Doctor 页面')
     navigate.toName(doctorRouteName)
+    // useShareMessage('跳转到 Mine 页面')
   }
 
   return {
