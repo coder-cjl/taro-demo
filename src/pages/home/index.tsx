@@ -14,6 +14,7 @@ import {
   formatCreditCardNumber,
 } from 'src/utils/format'
 import { GaintPlanComponent, PingGuToolComponent } from './component'
+import logger from 'src/utils/log'
 
 export default function HomePage() {
   const logic = useHomeLogic()
@@ -79,7 +80,7 @@ export default function HomePage() {
       </Button> */}
       {/* <LucaButton>自定义按钮2</LucaButton> */}
       <LucaColumn alignItems="left" gap="10px">
-        <PingGuToolComponent />
+        <PingGuToolComponent onClick={() => logic.onToMine()} />
         <GaintPlanComponent />
         {/* <LucaButton onClick={logic.onToMine}>跳转到 Doctor</LucaButton>
         <LucaButton onClick={logic.onShowLoading}>start loading</LucaButton>

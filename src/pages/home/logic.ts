@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { useEffect, useState } from 'react'
 import {
   showError,
@@ -29,6 +29,10 @@ export default function useHomeLogic() {
       eventBus.off('test-event')
     }
   }, [])
+
+  useDidShow(() => {
+    logger.debug('Home 页面显示')
+  })
 
   function fetchData() {
     // logger.debug('fetchData 函数被调用')

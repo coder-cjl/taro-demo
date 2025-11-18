@@ -7,13 +7,14 @@ import {
   LucaList,
   LucaSpace,
 } from 'src/components/luca-ui'
+import logger from 'src/utils/log'
 
-function GaintPlanHeaderComponent() {
+function GaintPlanHeaderComponent(props: PingGuToolComponentProps) {
   return (
     <LucaRow justifyContent="space-between" width="100%">
       <LucaText variant="h1">术后-出院康复方案</LucaText>
       <LucaSpace size="small">
-        <LucaText size={32} color="#49869E">
+        <LucaText size={32} color="#49869E" onClick={() => props.onClick && props.onClick()}>
           调整方案
         </LucaText>
         <LucaContainer width={40} height={40} backgroundColor="red" />
@@ -125,11 +126,15 @@ function PingGuSectionComponent() {
   )
 }
 
-function PingGuToolComponent() {
+interface PingGuToolComponentProps {
+  onClick?: () => void
+}
+
+function PingGuToolComponent(props: PingGuToolComponentProps) {
   return (
     <LucaContainer fullWidth paddingX={48} marginBottom={32}>
       <LucaColumn alignItems="stretch">
-        <GaintPlanHeaderComponent />
+        <GaintPlanHeaderComponent {...props} />
         <PingGuSectionComponent />
       </LucaColumn>
     </LucaContainer>
